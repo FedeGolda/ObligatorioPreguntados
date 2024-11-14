@@ -4,6 +4,7 @@ module com.mycompany.obligatoriopreguntados {
     requires java.base;
     requires okhttp3;
     requires com.fasterxml.jackson.databind;
+    requires java.rmi;
     opens Modelo to com.fasterxml.jackson.databind; 
    
     opens com.mycompany.obligatoriopreguntados to javafx.fxml;

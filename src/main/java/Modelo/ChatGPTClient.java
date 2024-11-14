@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ChatGPTClient {
 
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
-    private final String API_KEY = System.getenv("OPENAI_API_KEY");
+    private final String API_KEY = "";
 
     private final OkHttpClient client;
     private final ObjectMapper objectMapper;

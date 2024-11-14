@@ -9,5 +9,9 @@ package Modelo;
  * @author jmv14
  */
 public class Partida {
-    
+    private Usuario jugador1;
+    private Usuario jugador2;
+    private Usuario ganador;
+    private int coronasJugador1;
+    private int coronasJugador2;
 }

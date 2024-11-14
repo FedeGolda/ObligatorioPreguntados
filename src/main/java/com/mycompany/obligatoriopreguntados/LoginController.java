@@ -1,5 +1,8 @@
 package com.mycompany.obligatoriopreguntados;
 
+import Modelo.Usuario;
+
+import Modelo.UsuarioManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -97,4 +100,24 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    
+    @FXML
+    public void iniciarSesion() {
+            String nombreUsuario = usernameField.getText();
+        String password = passwordField.getText();
+    try {
+        Usuario usuario = UsuarioManager.buscarUsuario(nombreUsuario, password);
+        if (usuario != null) {
+            // Usuario encontrado, continuar con el juego
+                  
+              App.setRoot("juego"); 
+              
+        } else {
+            // Mostrar un mensaje de error: usuario no encontrado
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        // Manejar el error de I/O
+    }
+}
 }
