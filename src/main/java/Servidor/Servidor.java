@@ -1,23 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Servidor;
 
-import Modelo.SesionUsuario;
+
+import Modelo.PartidaUnJugador;
 import Modelo.SesionUsuarioImpl;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+
+
 public class Servidor {
-    public static void main(String[] args) {
+
+   
+ public static void main(String[] args) {
+     
         try {
-            Registry registry = LocateRegistry.createRegistry(1099); // Puerto por defecto
-            SesionUsuario sesionUsuario = new SesionUsuarioImpl();
-            registry.rebind("SesionUsuario", sesionUsuario);
-            System.out.println("Servidor RMI listo.");
+            PartidaUnJugador juego =  new PartidaUnJugador();
+            SesionUsuarioImpl gestionUsuarios = new SesionUsuarioImpl();
+           Registry registry = LocateRegistry.createRegistry(1099);
+           
+           registry.rebind("PartidaUnJugador", juego);
+            registry.rebind("GestionUsuarios", gestionUsuarios);
+           System.out.println("Servidor listo");
+       
         } catch (Exception e) {
+             System.err.println("Excepción del servidor: " + e.toString());
             e.printStackTrace();
         }
     }
+
 }
+   

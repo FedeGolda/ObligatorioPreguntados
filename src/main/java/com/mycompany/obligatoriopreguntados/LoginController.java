@@ -25,7 +25,7 @@ public class LoginController {
         String password = passwordField.getText();
 
         if (isUserValid(username, password)) {
-            App.setRoot("juego");  // Cambia a la pantalla del juego
+            App.setRoot("menu");  // Cambia a la pantalla del juego
         } else {
             showAlert("Error", "Usuario o contraseña incorrectos.");
         }

@@ -9,9 +9,10 @@ package Modelo;
  * @author jmv14
  */
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Pregunta {
+public class Pregunta implements Serializable{
     private String pregunta;
     private String[] opciones;
     private String respuestaCorrecta;
