@@ -11,8 +11,6 @@ import java.rmi.RemoteException;
  *
  * @author jmv14
  */
-public interface JuegoRemoto extends Remote{
-    Pregunta cargarPregunta(String categoria) throws RemoteException;
-     boolean verificarRespuesta(String respuesta, Pregunta pregunta) throws RemoteException;
-    boolean verificarGanador()throws RemoteException;
+public interface UsuarioRemote extends Remote{
+     void notificar(String mensaje) throws RemoteException;
 }

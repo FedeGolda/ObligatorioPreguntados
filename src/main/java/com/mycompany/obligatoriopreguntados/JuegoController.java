@@ -1,6 +1,7 @@
 package com.mycompany.obligatoriopreguntados;
 
 import Cliente.Cliente;
+import Modelo.Categoria;
 import Modelo.PartidaUnJugador;
 import Modelo.Pregunta;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class JuegoController implements Initializable {
     private Label nombreJugador;
 
     private Pregunta pregunta;
+  
     private Cliente cliente;
     private PartidaUnJugador partida;
 
@@ -42,7 +44,7 @@ public class JuegoController implements Initializable {
         try {
             cliente = new Cliente(); 
 
-         
+     
             cargarPregunta(); // Carga la primera pregunta
         } catch (Exception e) {
             mostrarMensajeError("Error de Inicialización", "No se pudo iniciar el juego. Intente nuevamente.");
@@ -73,6 +75,7 @@ public class JuegoController implements Initializable {
         } else {
             mostrarMensajeError("Error de Pregunta", "Datos de pregunta incompletos.");
         }
+
     }
 
     private void asignarAccionBoton(Button boton, String respuesta) {
@@ -126,4 +129,6 @@ public class JuegoController implements Initializable {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+
 }

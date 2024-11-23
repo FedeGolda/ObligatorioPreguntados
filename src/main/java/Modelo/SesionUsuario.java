@@ -15,5 +15,6 @@ public interface SesionUsuario extends Remote {
     Usuario getUsuario() throws RemoteException;
     void setUsuario(Usuario usuario) throws RemoteException;
     void cerrarSesion() throws RemoteException;
+        void registrarCliente(String idCliente, UsuarioRemote cliente) throws RemoteException;
 }
 

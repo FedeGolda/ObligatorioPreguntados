@@ -4,17 +4,25 @@
  */
 package Modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Objects;
 
 /**
  *
  * @author jmv14
  */
-public class Usuario {
+
+public class Usuario  extends UnicastRemoteObject implements  UsuarioRemote {
     private String nombreUsuario;
     private String password;
 
-    public Usuario(String nombreUsuario, String password) {
+    public Usuario() throws RemoteException{
+    }
+
+    public Usuario(String nombreUsuario, String password) throws RemoteException{
         this.nombreUsuario = nombreUsuario;
         this.password = password;
     }
@@ -38,5 +46,10 @@ public class Usuario {
     @Override
     public int hashCode() {
         return Objects.hash(nombreUsuario, password);
+    }
+
+    @Override
+    public void notificar(String mensaje) throws RemoteException {
+          System.out.println("Mensaje del servidor: " + mensaje); 
     }
 }

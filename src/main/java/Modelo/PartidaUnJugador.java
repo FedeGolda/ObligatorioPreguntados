@@ -37,10 +37,13 @@ public class PartidaUnJugador extends UnicastRemoteObject implements JuegoRemoto
     }
 
     @Override
-    public Pregunta cargarPregunta() throws RemoteException {
+    public Pregunta cargarPregunta( String categoria) throws RemoteException {
         try {
+       
+                  
+        
             ChatGPTClient chatgpt = new ChatGPTClient();
-            Pregunta pregunta = chatgpt.generarPregunta();
+            Pregunta pregunta = chatgpt.generarPregunta(categoria);
             return pregunta;
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, "Error al cargar pregunta", ex);

@@ -1,5 +1,6 @@
 package com.mycompany.obligatoriopreguntados;
 
+import Cliente.Cliente;
 import Modelo.Usuario;
 
 import Modelo.UsuarioManager;
@@ -8,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.io.*;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class LoginController {
 
@@ -18,13 +21,17 @@ public class LoginController {
 
     private final String usersFilePath = "usuarios.txt";
 
+        private Cliente cliente;
     // Método para manejar el inicio de sesión
     @FXML
-    private void handleLogin() throws IOException {
+    private void handleLogin() throws IOException, RemoteException, NotBoundException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-
+        cliente = new Cliente();
         if (isUserValid(username, password)) {
+                                Usuario usuario = new Usuario(username, password);
+                    cliente.registrarCliente(username, usuario);
+
             App.setRoot("menu");  // Cambia a la pantalla del juego
         } else {
             showAlert("Error", "Usuario o contraseña incorrectos.");
@@ -57,6 +64,7 @@ public class LoginController {
             while ((line = br.readLine()) != null) {
                 String[] userData = line.split(";");
                 if (userData[0].equals(username) && userData[1].equals(password)) {
+                    
                     return true;
                 }
             }
