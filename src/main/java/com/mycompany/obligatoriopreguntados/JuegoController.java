@@ -118,7 +118,7 @@ public class JuegoController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Respuesta Incorrecta");
         alert.setHeaderText(null);
-        alert.setContentText("Respuesta incorrecta. Intenta nuevamente.");
+        alert.setContentText("Respuesta incorrecta.");
         alert.showAndWait();
     }
 

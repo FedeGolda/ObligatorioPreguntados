@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.obligatoriopreguntados.MenuController">
    <children>
-      <Button fx:id="PartidaUnJugadorButton" onAction="#IniciarPartida"  layoutX="174.0" layoutY="153.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="210.0" text="Un jugador" />
-      <Button fx:id="opcion4Button" layoutX="173.0" layoutY="246.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="210.0" text="Button" />
+      <Button fx:id="PartidaUnJugadorButton" layoutX="174.0" layoutY="153.0" mnemonicParsing="false" onAction="#IniciarPartida" prefHeight="46.0" prefWidth="210.0" text="Un jugador" />
+      <Button fx:id="MultiJugadorButton" layoutX="173.0" layoutY="246.0" mnemonicParsing="false" onAction="#AMenuMultijugador" prefHeight="46.0" prefWidth="210.0" text="Multijugador" />
+      <Label fx:id="UsuarioLabel" layoutX="243.0" layoutY="67.0" text="Label" />
    </children>
 </AnchorPane>

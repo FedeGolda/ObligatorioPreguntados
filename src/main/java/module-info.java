@@ -7,7 +7,7 @@ module com.mycompany.obligatoriopreguntados {
     requires java.rmi;
     requires java.logging;
     opens Modelo to com.fasterxml.jackson.databind; 
-   
+
     opens com.mycompany.obligatoriopreguntados to javafx.fxml;
     exports com.mycompany.obligatoriopreguntados;
 }

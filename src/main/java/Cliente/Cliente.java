@@ -5,16 +5,22 @@
 package Cliente;
 
 import Modelo.Categoria;
+
 import Modelo.JuegoRemoto;
+import Modelo.Multijugador;
+import Modelo.Partida;
+
 import Modelo.Pregunta;
-import Modelo.SesionUsuario;
+
 import Modelo.Usuario;
 import Modelo.UsuarioRemote;
+import Modelo.UsuariosEnServidor;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.List;
 
 public class Cliente {
 
@@ -29,7 +35,7 @@ public class Cliente {
         try { 
                    Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
-              SesionUsuario gestionUsuario = (SesionUsuario) registry.lookup("GestionUsuarios");
+   
               Categoria c = Categoria.getInstance();
               
               String categoria = c.getCategoria();
@@ -54,11 +60,44 @@ public class Cliente {
         }
     }
     
+    
+    public void crearLobby() throws RemoteException, NotBoundException{
+         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+         Multijugador multijugador = (Multijugador) registry.lookup("multijugador");
+       
+         multijugador.crearLobby();
+ 
+    
+
+    }
+    
+     public List<Partida> obtenerPartidas() {
+        try {
+              Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+         Multijugador multijugador = (Multijugador) registry.lookup("multijugador");
+            return multijugador.obtenerPartidasActivas();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    
     public boolean verificarGanador() throws RemoteException, NotBoundException{
                  Registry registry = LocateRegistry.getRegistry("localhost", 1099);
                JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
                return servidor.verificarGanador();
     }
+    
+  public void IngresarUsuario() throws RemoteException, NotBoundException{
+  Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+     UsuariosEnServidor gestionDeUsuarios = (UsuariosEnServidor) registry.lookup("usuariosActivos");
+     
+     gestionDeUsuarios.ingresarUsuario();
+
+
+    
+  }
 
     public static void main(String[] args) throws RemoteException {
         // Instancia el cliente y realiza una llamada de prueba
@@ -67,8 +106,12 @@ public class Cliente {
               Registry registry = LocateRegistry.getRegistry("localhost", 1099);
           
               JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador"); 
-      SesionUsuario gestionUsuario = (SesionUsuario) registry.lookup("GestionUsuarios");
-            System.out.println("Conexión con el servidor establecida.");
+             UsuariosEnServidor gestionUsuarios = (UsuariosEnServidor) registry.lookup("usuariosActivos");
+              List<Usuario> usuariosActivos = gestionUsuarios.usuariosActivos();
+              for(Usuario usuario : usuariosActivos){
+                  System.out.println(usuario.getNombreUsuario());
+              }
+                System.out.println("Conexión con el servidor establecida.");
         } catch (Exception e) {
             System.err.println("Error al conectar con el servidor RMI:");
             e.printStackTrace();
@@ -78,18 +121,5 @@ public class Cliente {
        
     }
     
-    public void setUsuario(Usuario usuario) throws RemoteException, NotBoundException{
-                     Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-               SesionUsuario servidor = (SesionUsuario) registry.lookup("GestionUsuarios");
-               
-              servidor.setUsuario(usuario);
-
-    }
-    
-    public void registrarCliente(String Username, UsuarioRemote usuario) throws RemoteException, NotBoundException{
-                        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-               SesionUsuario servidor = (SesionUsuario) registry.lookup("GestionUsuarios");
-               servidor.registrarCliente(Username, usuario);
-    }
 
 }

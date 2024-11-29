@@ -7,13 +7,15 @@ package Modelo;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  *
  * @author jmv14
  */
-public interface JuegoRemoto extends Remote{
-    Pregunta cargarPregunta(String categoria) throws RemoteException;
-     boolean verificarRespuesta(String respuesta, Pregunta pregunta) throws RemoteException;
-    boolean verificarGanador()throws RemoteException;
+public interface Multijugador extends Remote {
+    void crearLobby() throws RemoteException;
+    void agregarJugador(Usuario jugador2) throws RemoteException;
+    List<Partida> obtenerPartidasActivas() throws RemoteException;
+    
 }

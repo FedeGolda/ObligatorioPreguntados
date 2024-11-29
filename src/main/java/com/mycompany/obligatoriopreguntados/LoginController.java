@@ -1,6 +1,7 @@
 package com.mycompany.obligatoriopreguntados;
 
 import Cliente.Cliente;
+import Modelo.SesionActual;
 import Modelo.Usuario;
 
 import Modelo.UsuarioManager;
@@ -29,9 +30,10 @@ public class LoginController {
         String password = passwordField.getText();
         cliente = new Cliente();
         if (isUserValid(username, password)) {
-                                Usuario usuario = new Usuario(username, password);
-                    cliente.registrarCliente(username, usuario);
-
+         Usuario usuario = new Usuario(username, password);
+           usuario.IngresarUsuario();
+  SesionActual sesion = SesionActual.getInstance();
+              sesion.setUsuario(usuario);
             App.setRoot("menu");  // Cambia a la pantalla del juego
         } else {
             showAlert("Error", "Usuario o contraseña incorrectos.");
@@ -110,15 +112,18 @@ public class LoginController {
     }
     
     @FXML
-    public void iniciarSesion() {
+    public void iniciarSesion() throws RemoteException, NotBoundException {
             String nombreUsuario = usernameField.getText();
         String password = passwordField.getText();
     try {
         Usuario usuario = UsuarioManager.buscarUsuario(nombreUsuario, password);
+        
+        SesionActual sesion = SesionActual.getInstance();
+              sesion.setUsuario(usuario);
         if (usuario != null) {
             // Usuario encontrado, continuar con el juego
-                  
-              App.setRoot("juego"); 
+         usuario.IngresarUsuario();
+              App.setRoot("menu"); 
               
         } else {
             // Mostrar un mensaje de error: usuario no encontrado

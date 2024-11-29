@@ -25,7 +25,7 @@ public class PartidaUnJugador extends UnicastRemoteObject implements JuegoRemoto
     
     public void IniciarPartida(){
         try {
-            App.setRoot("juego");
+            App.setRoot("Ruleta");
         } catch (IOException ex) {
             Logger.getLogger(PartidaUnJugador.class.getName()).log(Level.SEVERE, null, ex);
         }

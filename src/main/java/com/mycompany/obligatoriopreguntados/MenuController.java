@@ -5,24 +5,51 @@
 package com.mycompany.obligatoriopreguntados;
 
 import Modelo.PartidaUnJugador;
+import Modelo.SesionActual;
+import Modelo.Usuario;
+import Modelo.UsuariosEnServidor;
 import java.io.IOException;
+import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
  *
  * @author jmv14
  */
-public class MenuController {
+public class MenuController implements Initializable{
     
+
     @FXML
-    private Button PartidaUnJugadorButton;
+    private Label UsuarioLabel;
+    @FXML
+    private Button MultiJugadorButton;
     
     @FXML
     public void IniciarPartida() throws IOException{
-    PartidaUnJugador partida = new PartidaUnJugador();
+
     
-    partida.IniciarPartida();
+    App.setRoot("Ruleta");
     }
     
-}
+    @FXML
+    public void AMenuMultijugador() throws IOException{
+      App.setRoot("menuMultijugador");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    SesionActual sesion = SesionActual.getInstance();
+    Usuario usuario = sesion.getUsuario();
+    UsuarioLabel.setText(usuario.getNombreUsuario());
+    }
+    
+    
+  }
