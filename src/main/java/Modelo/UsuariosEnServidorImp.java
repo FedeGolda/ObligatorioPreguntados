@@ -4,12 +4,19 @@
  */
 package Modelo;
 
+import Servidor.ServidorRemoto;
 import java.io.Serializable;
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,10 +25,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class UsuariosEnServidorImp extends UnicastRemoteObject implements UsuariosEnServidor, Serializable {
   public static final List<Usuario> usuariosActivos = new CopyOnWriteArrayList<>();
     @Override
-    public synchronized void ingresarUsuario() {
+    public synchronized void ingresarUsuario() throws RemoteException, AccessException {
+        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         SesionActual sesion = SesionActual.getInstance();
         Usuario usuario = sesion.getUsuario();
-      this.usuariosActivos.add(usuario);
+        this.usuariosActivos.add(usuario);
     }
 
     @Override

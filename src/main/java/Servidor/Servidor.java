@@ -19,11 +19,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 
-public class Servidor extends UnicastRemoteObject {
+public class Servidor extends UnicastRemoteObject implements ServidorRemoto{
   List<Partida> listaPartidas;
+  List<Usuario> usuarios = new CopyOnWriteArrayList<>();
 
     public Servidor() throws RemoteException{
         this.listaPartidas = new ArrayList();
+        this.usuarios = new ArrayList();
     }
     
 
@@ -34,10 +36,11 @@ public class Servidor extends UnicastRemoteObject {
             
             UsuariosEnServidorImp usuariosActivos = new UsuariosEnServidorImp();
             GestorMultijugador multijugador = new GestorMultijugador();
-            
+            Servidor servidor = new Servidor();
           Registry registry = LocateRegistry.createRegistry(1099);
          
            registry.rebind("usuariosActivos", usuariosActivos);
+            registry.rebind("Servidor", servidor);
            registry.rebind("PartidaUnJugador", juego);
            registry.rebind("multijugador", multijugador);
            
@@ -50,6 +53,25 @@ public class Servidor extends UnicastRemoteObject {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void AgregarUsuario(String nombre, String password) throws RemoteException {
+        Usuario usuario =  new Usuario(nombre, password);
+        this.usuarios.add(usuario);
+        System.out.println("Usuario agregado");
+         System.out.println("Usuarios conectados:");
+        for(Usuario u : usuarios){
+        System.out.println(u.getNombreUsuario());
+        }
+    }
+
+    @Override
+    public synchronized List<Usuario> usuariosConectados() throws RemoteException {
+        return new ArrayList<>(usuarios);
+      
+    }
+
+ 
 
 }
    

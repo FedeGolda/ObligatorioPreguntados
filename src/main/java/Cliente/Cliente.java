@@ -15,6 +15,7 @@ import Modelo.Pregunta;
 import Modelo.Usuario;
 import Modelo.UsuarioRemote;
 import Modelo.UsuariosEnServidor;
+import Servidor.ServidorRemoto;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -82,6 +83,11 @@ public class Cliente {
         }
     }
 
+     public String UsuariosConectados() throws RemoteException, NotBoundException{
+       Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+     UsuariosEnServidor gestionDeUsuarios = (UsuariosEnServidor) registry.lookup("usuariosActivos");
+        return(gestionDeUsuarios.listaDeUsuarios());
+     }
     
     public boolean verificarGanador() throws RemoteException, NotBoundException{
                  Registry registry = LocateRegistry.getRegistry("localhost", 1099);
@@ -92,7 +98,7 @@ public class Cliente {
   public void IngresarUsuario() throws RemoteException, NotBoundException{
   Registry registry = LocateRegistry.getRegistry("localhost", 1099);
      UsuariosEnServidor gestionDeUsuarios = (UsuariosEnServidor) registry.lookup("usuariosActivos");
-     
+  
      gestionDeUsuarios.ingresarUsuario();
 
 

@@ -18,12 +18,13 @@ import java.util.Objects;
  *
  * @author jmv14
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Usuario  extends UnicastRemoteObject implements Serializable {
+       private static final long serialVersionUID = 1L;
     private String nombreUsuario;
     private String password;
     private Cliente cliente;
-    private List<Partida> partidasDisponibles;
+  
     
     public Usuario() throws RemoteException{
        

@@ -5,6 +5,7 @@ import Modelo.SesionActual;
 import Modelo.Usuario;
 
 import Modelo.UsuarioManager;
+import Servidor.ServidorRemoto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -12,6 +13,8 @@ import javafx.scene.control.TextField;
 import java.io.*;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 public class LoginController {
 
@@ -33,6 +36,8 @@ public class LoginController {
          Usuario usuario = new Usuario(username, password);
            usuario.IngresarUsuario();
   SesionActual sesion = SesionActual.getInstance();
+ 
+
               sesion.setUsuario(usuario);
             App.setRoot("menu");  // Cambia a la pantalla del juego
         } else {
@@ -119,9 +124,14 @@ public class LoginController {
         Usuario usuario = UsuarioManager.buscarUsuario(nombreUsuario, password);
         
         SesionActual sesion = SesionActual.getInstance();
+       
               sesion.setUsuario(usuario);
         if (usuario != null) {
             // Usuario encontrado, continuar con el juego
+              Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+             ServidorRemoto servidor = (ServidorRemoto) registry.lookup("Servidor");
+          servidor.AgregarUsuario(nombreUsuario, password);
+     
          usuario.IngresarUsuario();
               App.setRoot("menu"); 
               
