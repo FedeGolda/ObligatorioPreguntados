@@ -53,7 +53,7 @@ public class UsuariosEnServidorImp extends UnicastRemoteObject implements Usuari
     public String listaDeUsuarios() throws RemoteException {
      StringBuilder sb = new StringBuilder();
      for(Usuario usuario : usuariosActivos){
-      sb.append(usuario.getNombreUsuario()).append(", ");
+      sb.append(usuario.getNombre()).append(", ");
      }
       if (sb.length() > 0) {
             sb.setLength(sb.length() - 2);
@@ -66,7 +66,7 @@ public class UsuariosEnServidorImp extends UnicastRemoteObject implements Usuari
     public Usuario buscarUsuario(String nombre) throws RemoteException{
         Usuario usuarioABuscar = null;
         for(Usuario usuario : usuariosActivos){
-            if(nombre == usuario.getNombreUsuario()){
+            if(nombre == usuario.getNombre()){
              usuarioABuscar = usuario;   
             }
         }

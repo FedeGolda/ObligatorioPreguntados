@@ -36,29 +36,66 @@ public class RuletaController {
         canvas.setOnMouseClicked(event -> spinWheel());
     }
 
-    private void drawWheel() {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        double centerX = canvas.getWidth() / 2;
-        double centerY = canvas.getHeight() / 2;
-        double radius = Math.min(centerX, centerY) - 10;
-        double angleStep = 360.0 / categories.length;
+private void drawWheel() {
+    GraphicsContext gc = canvas.getGraphicsContext2D();
+    double centerX = canvas.getWidth() / 2;
+    double centerY = canvas.getHeight() / 2;
+    double radius = Math.min(centerX, centerY) - 10;
+    double angleStep = 360.0 / categories.length;
 
-        for (int i = 0; i < categories.length; i++) {
-            gc.setFill(colors[i]);
-            gc.fillArc(centerX - radius, centerY - radius, 2 * radius, 2 * radius, 
-                       currentAngle + i * angleStep, angleStep, javafx.scene.shape.ArcType.ROUND);
-            drawText(gc, categories[i], centerX, centerY, radius, currentAngle + (i + 0.5) * angleStep);
-        }
+    // Dibujar segmentos de la ruleta
+    for (int i = 0; i < categories.length; i++) {
+        gc.setFill(colors[i]);
+        gc.fillArc(centerX - radius, centerY - radius, 2 * radius, 2 * radius,
+                   currentAngle + i * angleStep, angleStep, javafx.scene.shape.ArcType.ROUND);
     }
+
+    // Dibujar textos en cada segmento
+    for (int i = 0; i < categories.length; i++) {
+         drawText(gc, categories[i], centerX, centerY, radius, currentAngle + i * angleStep + angleStep / 2);
+    }
+
+    // Dibujar la flecha fija
+    drawArrowAtPosition(gc, centerX, centerY, radius, 90); // 90 grados apunta hacia arriba
+}
+    
+   private void drawArrowAtPosition(GraphicsContext gc, double centerX, double centerY, double radius, double angle) {
+    gc.setFill(Color.BLACK);
+    double radians = Math.toRadians(angle);
+
+    // Coordenadas para el triángulo de la flecha
+    double arrowTipX = centerX + (radius + 10) * Math.cos(radians);
+    double arrowTipY = centerY - (radius + 10) * Math.sin(radians); // Hacia arriba
+    double arrowBaseX1 = centerX + (radius + 20) * Math.cos(radians - Math.toRadians(10));
+    double arrowBaseY1 = centerY - (radius + 20) * Math.sin(radians - Math.toRadians(10));
+    double arrowBaseX2 = centerX + (radius + 20) * Math.cos(radians + Math.toRadians(10));
+    double arrowBaseY2 = centerY - (radius + 20) * Math.sin(radians + Math.toRadians(10));
+
+    // Dibujar el triángulo como flecha
+    gc.fillPolygon(
+        new double[]{arrowTipX, arrowBaseX1, arrowBaseX2},
+        new double[]{arrowTipY, arrowBaseY1, arrowBaseY2},
+        3
+    );
+}
+    
 
     private void drawText(GraphicsContext gc, String text, double centerX, double centerY, double radius, double angle) {
-        gc.setFill(Color.BLACK);
-        gc.setFont(new Font("Arial", 14));
-        double radians = Math.toRadians(angle);
-        double x = centerX + (radius / 1.5) * Math.cos(radians);
-        double y = centerY + (radius / 1.5) * Math.sin(radians);
-        gc.fillText(text, x - text.length() * 3, y);
-    }
+    gc.setFill(Color.BLACK);
+    gc.setFont(new Font("Arial", 14));
+    double radians = Math.toRadians(angle);
+    double x = centerX + (radius / 1.5) * Math.cos(radians);
+    double y = centerY + (radius / 1.5) * Math.sin(radians);
+
+    // Calcular el ancho y alto del texto
+    javafx.scene.text.Text tempText = new javafx.scene.text.Text(text);
+    tempText.setFont(gc.getFont());
+    double textWidth = tempText.getBoundsInLocal().getWidth();
+    double textHeight = tempText.getBoundsInLocal().getHeight();
+
+    // Ajustar las coordenadas del texto para que quede centrado
+    gc.fillText(text, x - textWidth / 2, y + textHeight / 4);
+}
 
     private void spinWheel() {
         double spinAngle = 360 * 5 + random.nextInt(360); // Rotación de 5 vueltas completas + un ángulo aleatorio

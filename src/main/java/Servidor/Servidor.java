@@ -3,6 +3,7 @@ package Servidor;
 
 
 import Modelo.GestorMultijugador;
+import Modelo.IPartida;
 import Modelo.Partida;
 import Modelo.PartidaUnJugador;
 import Modelo.Usuario;
@@ -20,7 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class Servidor extends UnicastRemoteObject implements ServidorRemoto{
-  List<Partida> listaPartidas;
+  List<IPartida> listaPartidas = new CopyOnWriteArrayList<>();
   List<Usuario> usuarios = new CopyOnWriteArrayList<>();
 
     public Servidor() throws RemoteException{
@@ -61,7 +62,7 @@ public class Servidor extends UnicastRemoteObject implements ServidorRemoto{
         System.out.println("Usuario agregado");
          System.out.println("Usuarios conectados:");
         for(Usuario u : usuarios){
-        System.out.println(u.getNombreUsuario());
+        System.out.println(u.getNombre());
         }
     }
 
@@ -69,6 +70,19 @@ public class Servidor extends UnicastRemoteObject implements ServidorRemoto{
     public synchronized List<Usuario> usuariosConectados() throws RemoteException {
         return new ArrayList<>(usuarios);
       
+    }
+   
+  @Override
+    public  List<IPartida> partidasDisponibles() throws RemoteException {
+          return new ArrayList<>(listaPartidas);
+    }
+
+    @Override
+    public void AgregarPartida(Usuario usuario) throws RemoteException {
+  
+       Partida nuevaPartida = new Partida(usuario);
+       listaPartidas.add(nuevaPartida);
+       System.out.println("Partida creada");
     }
 
  

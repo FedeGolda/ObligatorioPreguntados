@@ -34,7 +34,12 @@ public class LoginController {
         cliente = new Cliente();
         if (isUserValid(username, password)) {
          Usuario usuario = new Usuario(username, password);
-           usuario.IngresarUsuario();
+           usuario.IngresarUsuario();  
+           Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+             ServidorRemoto servidor = (ServidorRemoto) registry.lookup("Servidor");
+          servidor.AgregarUsuario(username, password);
+     
+           
   SesionActual sesion = SesionActual.getInstance();
  
 

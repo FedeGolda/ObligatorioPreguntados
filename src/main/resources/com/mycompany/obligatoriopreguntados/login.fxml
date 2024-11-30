@@ -19,7 +19,7 @@
         <PasswordField fx:id="passwordField" promptText="Contraseña"/>
 
         <!-- Botón para iniciar sesión -->
-        <Button text="Ingresar" onAction="#iniciarSesion"/>
+        <Button text="Ingresar" onAction="#handleLogin"/>
         
         <!-- Botón para crear un nuevo usuario -->
         <Button text="Crear Usuario" onAction="#handleCreateUser"/>

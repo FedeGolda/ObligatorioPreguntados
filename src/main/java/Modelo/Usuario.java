@@ -19,7 +19,7 @@ import java.util.Objects;
  * @author jmv14
  */
 
-public class Usuario  extends UnicastRemoteObject implements Serializable {
+public class Usuario  extends UnicastRemoteObject implements Serializable{
        private static final long serialVersionUID = 1L;
     private String nombreUsuario;
     private String password;
@@ -27,20 +27,23 @@ public class Usuario  extends UnicastRemoteObject implements Serializable {
   
     
     public Usuario() throws RemoteException{
-       
+       super();
     }
 
     public Usuario(String nombreUsuario, String password) throws RemoteException{
+        super();
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.cliente = new Cliente();
     }
 
-    public String getNombreUsuario() {
+     
+    public String getNombre() throws RemoteException{
         return nombreUsuario;
     }
 
-    public String getPassword() {
+ 
+    public String getPassword() throws RemoteException{
         return password;
     }
 

@@ -53,7 +53,11 @@ public class Cliente {
         try {
                        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
                JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
+               if(servidor.verificarRespuesta(respuesta, pregunta) == true){
+               servidor.aumentarContador();
+               }
             return servidor.verificarRespuesta(respuesta, pregunta);
+            
         } catch (Exception e) {
             System.err.println("Error al verificar respuesta:");
             e.printStackTrace();
@@ -65,7 +69,8 @@ public class Cliente {
     public void crearLobby() throws RemoteException, NotBoundException{
          Registry registry = LocateRegistry.getRegistry("localhost", 1099);
          Multijugador multijugador = (Multijugador) registry.lookup("multijugador");
-       
+        
+         
          multijugador.crearLobby();
  
     
@@ -104,6 +109,12 @@ public class Cliente {
 
     
   }
+  
+  public void aumentarCOntador() throws RemoteException, NotBoundException{
+     Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+               JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
+              servidor.aumentarContador();
+  }
 
     public static void main(String[] args) throws RemoteException {
         // Instancia el cliente y realiza una llamada de prueba
@@ -115,7 +126,7 @@ public class Cliente {
              UsuariosEnServidor gestionUsuarios = (UsuariosEnServidor) registry.lookup("usuariosActivos");
               List<Usuario> usuariosActivos = gestionUsuarios.usuariosActivos();
               for(Usuario usuario : usuariosActivos){
-                  System.out.println(usuario.getNombreUsuario());
+                  System.out.println(usuario.getNombre());
               }
                 System.out.println("Conexión con el servidor establecida.");
         } catch (Exception e) {

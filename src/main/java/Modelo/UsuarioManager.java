@@ -20,7 +20,7 @@ public class UsuarioManager {
         List<Usuario> usuarios = cargarUsuariosDesdeArchivo("J:/Programacion3/Java/NetBeans-22/Projects/PreguntadosDDA/ObligatorioPreguntados/usuarios.txt");
 
         for (Usuario usuario : usuarios) {
-            if (usuario.getNombreUsuario().equals(nombreUsuario) && usuario.getPassword().equals(password)) {
+            if (usuario.getNombre().equals(nombreUsuario) && usuario.getPassword().equals(password)) {
                 return usuario; // Retorna el usuario si coincide
             }
         }

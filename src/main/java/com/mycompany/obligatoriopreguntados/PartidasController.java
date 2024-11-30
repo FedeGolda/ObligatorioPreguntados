@@ -5,10 +5,18 @@
 package com.mycompany.obligatoriopreguntados;
 
 import Cliente.Cliente;
+import Modelo.IPartida;
 import Modelo.Partida;
 import Modelo.SesionActual;
 import Modelo.Usuario;
+import Servidor.ServidorRemoto;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
@@ -18,26 +26,32 @@ import javafx.scene.control.ListView;
  */
 public class PartidasController {
       @FXML
-    private ListView<String> partidasListView;
+    private ListView<String> ListView;
 
     private Cliente cliente;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws RemoteException, NotBoundException {
         SesionActual sesion = SesionActual.getInstance();
         Usuario usuario = sesion.getUsuario();
         cliente = usuario.getCliente();
         cargarPartidas();
     }
 
-    private void cargarPartidas() {
-        List<Partida> partidas = cliente.obtenerPartidas();
-        if (partidas != null) {
-            partidasListView.getItems().clear();
-            for (Partida partida : partidas) {
-                partidasListView.getItems().add("Partida de: " + partida.getJugador1().getNombreUsuario());
-            }
+    private void cargarPartidas() throws RemoteException, NotBoundException {
+         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+             ServidorRemoto servidor = (ServidorRemoto) registry.lookup("Servidor");
+        List<IPartida> partidas = servidor.partidasDisponibles();
+             ObservableList<String> partidasTexto = FXCollections.observableArrayList();
+
+        // Asumiendo que la clase Partida tiene un método toString() adecuado
+        for (IPartida partida : partidas) {
+            partidasTexto.add(partida.PartidaTexto()); // Cambia esto si necesitas otro formato
         }
+
+        // Configurar la lista en el ListView
+        ListView.setItems(partidasTexto);
+    
     }
     
    

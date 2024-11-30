@@ -54,7 +54,9 @@ public class PartidaUnJugador extends UnicastRemoteObject implements JuegoRemoto
     @Override
     public boolean verificarGanador() throws RemoteException { 
         if(this.Contador == 3){
-    return true;
+           this.Contador = 0;
+           return true;
+   
         }
         return false;
     }
@@ -63,6 +65,7 @@ public class PartidaUnJugador extends UnicastRemoteObject implements JuegoRemoto
         this.Contador = Contador;
     }
  
+    @Override
  public void aumentarContador(){
      int valor = getContador() + 1;
 this.Contador = valor;

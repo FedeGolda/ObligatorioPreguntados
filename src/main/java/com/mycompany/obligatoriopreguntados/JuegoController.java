@@ -95,7 +95,7 @@ public class JuegoController implements Initializable {
         if (cliente.verificarRespuesta(respuestaSeleccionada, pregunta)) {
             mostrarMensajeCorrecto();
           cargarPregunta();
-            if (cliente.verificarGanador() ) {
+            if (cliente.verificarGanador() == true ) {
                 App.setRoot("menu");
             } else {
                 // Cargar una nueva pregunta si la respuesta es correcta

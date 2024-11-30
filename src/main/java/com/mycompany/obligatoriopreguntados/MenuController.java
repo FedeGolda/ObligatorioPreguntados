@@ -15,6 +15,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -48,7 +50,12 @@ public class MenuController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
     SesionActual sesion = SesionActual.getInstance();
     Usuario usuario = sesion.getUsuario();
-    UsuarioLabel.setText(usuario.getNombreUsuario());
+        try {
+            UsuarioLabel.setText(usuario.getNombre());
+        
+        } catch (RemoteException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

@@ -10,16 +10,19 @@ import java.io.Serializable;
  *
  * @author jmv14
  */
-public class SesionActual implements Serializable{
-      private static final SesionActual instancia = new SesionActual();
-      private Usuario usuario;
+public class SesionActual  implements Serializable{
+      private static SesionActual instancia;
+   public static  Usuario usuario;
       
      public static SesionActual getInstance() {
+             if (instancia == null) {
+            instancia = new SesionActual();
+        }
         return instancia;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public static void setUsuario(Usuario usuario) {
+        SesionActual.usuario = usuario;
     }
 
     public Usuario getUsuario() {

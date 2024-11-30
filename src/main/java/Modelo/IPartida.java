@@ -4,18 +4,13 @@
  */
 package Modelo;
 
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 
 /**
  *
  * @author jmv14
  */
-public interface Multijugador extends Remote {
-    void crearLobby() throws RemoteException;
-    void agregarJugador(Usuario jugador2) throws RemoteException;
-    List<Partida> obtenerPartidasActivas() throws RemoteException;
-   
+public interface IPartida extends Remote{
+    String PartidaTexto() throws RemoteException;
 }
