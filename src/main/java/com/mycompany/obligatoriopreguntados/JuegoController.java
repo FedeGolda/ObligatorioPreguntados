@@ -98,8 +98,9 @@ public class JuegoController implements Initializable {
             configurarDificultad();
            App.setRoot("Ruleta");
             if (cliente.verificarGanador() == true ) {
+               cliente.reinciarContador();
                 App.setRoot("Ganador");
-        
+               
           
             } else {
                 // Cargar una nueva pregunta si la respuesta es correcta

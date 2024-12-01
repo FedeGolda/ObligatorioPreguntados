@@ -122,6 +122,12 @@ public class Cliente {
     
   }
   
+  public void reinciarContador() throws RemoteException, NotBoundException{
+      Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+      JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
+      servidor.reiniciarContador();
+
+  }
   public void aumentarCOntador() throws RemoteException, NotBoundException{
      Registry registry = LocateRegistry.getRegistry("localhost", 1099);
                JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
