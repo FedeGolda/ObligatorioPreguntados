@@ -4,8 +4,11 @@
  */
 package com.mycompany.obligatoriopreguntados;
 
+import Cliente.Cliente;
 import Modelo.Categoria;
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -19,9 +22,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 
 public class RuletaController {
-
+  private Cliente cliente;
+    @FXML
+    private Label contador;
+    
     @FXML
     private Canvas canvas;
 
@@ -31,9 +38,12 @@ public class RuletaController {
     private double currentAngle = 0;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws RemoteException, NotBoundException {
+         cliente = new Cliente(); 
+         contador.setText( "Aciertos " + cliente.contadorString() + "/20");
         drawWheel();
         canvas.setOnMouseClicked(event -> spinWheel());
+      
     }
 
 private void drawWheel() {

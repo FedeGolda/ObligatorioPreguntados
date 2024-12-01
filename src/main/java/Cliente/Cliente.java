@@ -51,10 +51,12 @@ public class Cliente {
     // Método para verificar la respuesta del usuario en el servidor
     public boolean verificarRespuesta(String respuesta, Pregunta pregunta) {
         try {
-                       Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+               Registry registry = LocateRegistry.getRegistry("localhost", 1099);
                JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
                if(servidor.verificarRespuesta(respuesta, pregunta) == true){
                servidor.aumentarContador();
+               }else{
+                 servidor.reiniciarContador();
                }
             return servidor.verificarRespuesta(respuesta, pregunta);
             
@@ -65,6 +67,12 @@ public class Cliente {
         }
     }
     
+    public String contadorString() throws RemoteException, NotBoundException{
+       Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+       JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
+        String contadorString = servidor.getContadorString();
+        return contadorString;
+    }
     public void configurarDificultad() throws RemoteException, NotBoundException{
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");

@@ -5,6 +5,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -29,5 +30,14 @@ public class SesionActual  implements Serializable{
         return usuario;
     }
      
+   public String getNombreUsuario() throws RemoteException{
+    String nombre = usuario.getNombre();
+          return nombre;
+   }
+   
+   public String getPasswordUsuario() throws RemoteException{
+     String password = usuario.getPassword();
+     return password;
+   }
      
 }

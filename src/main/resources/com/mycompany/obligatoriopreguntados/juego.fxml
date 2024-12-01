@@ -11,19 +11,19 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <Button fx:id="opcion1Button" layoutX="174.0" layoutY="164.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="210.0" text="Button" textAlignment="JUSTIFY" wrapText="true">
+      <Button fx:id="opcion1Button" layoutX="62.0" layoutY="164.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="446.0" text="Button" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button fx:id="opcion2Button" layoutX="174.0" layoutY="222.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="210.0" text="Button" textAlignment="JUSTIFY" wrapText="true">
+      <Button fx:id="opcion2Button" layoutX="60.0" layoutY="221.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="446.0" text="Button" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button fx:id="opcion3Button" layoutX="174.0" layoutY="283.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="210.0" text="Button" textAlignment="JUSTIFY" wrapText="true">
+      <Button fx:id="opcion3Button" layoutX="62.0" layoutY="283.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="446.0" text="Button" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button fx:id="opcion4Button" layoutX="174.0" layoutY="339.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="210.0" text="Button" textAlignment="JUSTIFY" wrapText="true">
+      <Button fx:id="opcion4Button" layoutX="62.0" layoutY="339.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="446.0" text="Button" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>

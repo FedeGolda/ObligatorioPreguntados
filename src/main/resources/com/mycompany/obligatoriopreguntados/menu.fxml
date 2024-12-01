@@ -11,7 +11,7 @@
       <Button fx:id="MultiJugadorButton" layoutX="173.0" layoutY="246.0" mnemonicParsing="false" onAction="#AMenuMultijugador" prefHeight="46.0" prefWidth="210.0" text="Multijugador" />
       <Label fx:id="UsuarioLabel" layoutX="87.0" layoutY="67.0" prefHeight="46.0" prefWidth="378.0" text="Label">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="33.0" />
          </font></Label>
    </children>
 </AnchorPane>

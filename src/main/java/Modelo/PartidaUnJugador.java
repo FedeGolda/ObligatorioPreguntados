@@ -53,7 +53,7 @@ public class PartidaUnJugador extends UnicastRemoteObject implements JuegoRemoto
 
     @Override
     public boolean verificarGanador() throws RemoteException { 
-        if(this.Contador == 3){
+        if(this.Contador == 20){
          
            return true;
    
@@ -80,7 +80,7 @@ this.Contador = valor;
 
     @Override
     public void configurarDificultad() throws RemoteException {
-     int rango = this.Contador > 6 ? 3 : (this.Contador > 3 ? 2 : 1);
+     int rango = this.Contador > 15 ? 10 : (this.Contador > 3 ? 2 : 1);
 
 switch (rango) {
     case 3:
@@ -94,6 +94,18 @@ switch (rango) {
         this.dificultad = "desconoce totalmente del tema";
         break;
 }
+    }
+
+    @Override
+    public void reiniciarContador() throws RemoteException {
+      this.Contador = 0;
+    }
+
+    @Override
+    public String getContadorString() throws RemoteException {
+        String contadorString = String.valueOf(getContador());
+        return contadorString;
+        
     }
     
     

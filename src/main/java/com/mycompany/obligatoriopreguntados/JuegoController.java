@@ -96,13 +96,16 @@ public class JuegoController implements Initializable {
         if (cliente.verificarRespuesta(respuestaSeleccionada, pregunta)) {
             mostrarMensajeCorrecto();
             configurarDificultad();
-          cargarPregunta();
-         /*   if (cliente.verificarGanador() == true ) {
-                App.setRoot("menu");
+           App.setRoot("Ruleta");
+            if (cliente.verificarGanador() == true ) {
+                App.setRoot("Ganador");
+        
+          
             } else {
                 // Cargar una nueva pregunta si la respuesta es correcta
-            }*/
+            }
         } else {
+            
             mostrarMensajeIncorrecto();
             App.setRoot("menu");
         }
