@@ -17,4 +17,5 @@ public interface JuegoRemoto extends Remote{
      boolean verificarRespuesta(String respuesta, Pregunta pregunta) throws RemoteException;
     boolean verificarGanador()throws RemoteException;
     void aumentarContador() throws RemoteException;
+    void configurarDificultad() throws RemoteException;
 }

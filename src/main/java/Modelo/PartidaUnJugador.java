@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class PartidaUnJugador extends UnicastRemoteObject implements JuegoRemoto {
     
     
-    
+    private String dificultad;
     private int Contador = 0;
     
     public void IniciarPartida(){
@@ -39,11 +39,11 @@ public class PartidaUnJugador extends UnicastRemoteObject implements JuegoRemoto
     @Override
     public Pregunta cargarPregunta( String categoria) throws RemoteException {
         try {
-       
+            
                   
-        
+             
             ChatGPTClient chatgpt = new ChatGPTClient();
-            Pregunta pregunta = chatgpt.generarPregunta(categoria);
+            Pregunta pregunta = chatgpt.generarPregunta(categoria, this.dificultad);
             return pregunta;
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, "Error al cargar pregunta", ex);
@@ -54,7 +54,7 @@ public class PartidaUnJugador extends UnicastRemoteObject implements JuegoRemoto
     @Override
     public boolean verificarGanador() throws RemoteException { 
         if(this.Contador == 3){
-           this.Contador = 0;
+         
            return true;
    
         }
@@ -76,6 +76,24 @@ this.Contador = valor;
     }
 
     public PartidaUnJugador() throws RemoteException {
+    }
+
+    @Override
+    public void configurarDificultad() throws RemoteException {
+     int rango = this.Contador > 6 ? 3 : (this.Contador > 3 ? 2 : 1);
+
+switch (rango) {
+    case 3:
+        this.dificultad = "tiene altos conocimientos del tema";
+        break;
+    case 2:
+        this.dificultad = "tiene un conocimiento moderado del tema";
+        break;
+    case 1:
+    default:
+        this.dificultad = "desconoce totalmente del tema";
+        break;
+}
     }
     
     

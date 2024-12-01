@@ -51,7 +51,7 @@ public class MenuController implements Initializable{
     SesionActual sesion = SesionActual.getInstance();
     Usuario usuario = sesion.getUsuario();
         try {
-            UsuarioLabel.setText(usuario.getNombre());
+            UsuarioLabel.setText("Bienvenido " + usuario.getNombre());
         
         } catch (RemoteException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);

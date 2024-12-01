@@ -65,7 +65,11 @@ public class Cliente {
         }
     }
     
-    
+    public void configurarDificultad() throws RemoteException, NotBoundException{
+        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+        JuegoRemoto servidor = (JuegoRemoto) registry.lookup("PartidaUnJugador");
+        servidor.configurarDificultad();
+    }
     public void crearLobby() throws RemoteException, NotBoundException{
          Registry registry = LocateRegistry.getRegistry("localhost", 1099);
          Multijugador multijugador = (Multijugador) registry.lookup("multijugador");

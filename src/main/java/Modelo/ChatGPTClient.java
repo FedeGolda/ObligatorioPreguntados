@@ -26,10 +26,10 @@ public class ChatGPTClient {
         this.objectMapper = new ObjectMapper();
     }
 
-    public Pregunta generarPregunta(String categoria) throws IOException {
+    public Pregunta generarPregunta(String categoria, String dificultad) throws IOException {
 
         String prompt = "Genera una pregunta de trivia estrictamente relacionada con la categoría: " + categoria + 
-". La categoría puede ser 'Historia', 'Ciencia', 'Arte', etc. El formato debe ser JSON con los campos 'pregunta', 'opciones' (4 respuestas posibles) y 'respuestaCorrecta' (una de las opciones).";
+". La dificultad de la pregunta debe ser para alguien que " + dificultad + ".  El formato debe ser JSON con los campos 'pregunta', 'opciones' (4 respuestas posibles) y 'respuestaCorrecta' (una de las opciones).";
 
         // Crear el cuerpo de la solicitud para la API
         String jsonRequest = "{\"model\":\"gpt-3.5-turbo\",\"messages\":[{\"role\":\"user\",\"content\":\"" + prompt + "\"}]}";

@@ -7,6 +7,7 @@ import Modelo.Pregunta;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -94,18 +95,22 @@ public class JuegoController implements Initializable {
     private void verificarRespuesta(String respuestaSeleccionada) throws IOException, NotBoundException {
         if (cliente.verificarRespuesta(respuestaSeleccionada, pregunta)) {
             mostrarMensajeCorrecto();
+            configurarDificultad();
           cargarPregunta();
-            if (cliente.verificarGanador() == true ) {
+         /*   if (cliente.verificarGanador() == true ) {
                 App.setRoot("menu");
             } else {
                 // Cargar una nueva pregunta si la respuesta es correcta
-            }
+            }*/
         } else {
             mostrarMensajeIncorrecto();
             App.setRoot("menu");
         }
     }
 
+    private void configurarDificultad() throws RemoteException, NotBoundException{
+       cliente.configurarDificultad();
+    }
     private void mostrarMensajeCorrecto() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Respuesta Correcta");
