@@ -4,6 +4,7 @@
  */
 package com.mycompany.obligatoriopreguntados;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 
 /**
@@ -13,4 +14,10 @@ import javafx.fxml.FXML;
 public class LobbyEsperaController {
     @FXML
     public void IniciarPartida(){}
+    
+        @FXML
+    public void volverAlMenu() throws IOException{
+    App.setRoot("menu");
+    }
+  
 }

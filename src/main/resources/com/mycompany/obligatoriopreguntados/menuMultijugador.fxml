@@ -5,8 +5,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.obligatoriopreguntados.MenuMultijugadorController">
    <children>
-      <Button fx:id="crearPartidaButton" onAction="#CrearLobby"  layoutX="174.0" layoutY="153.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="210.0" text="Crear Partida" />
-      <Button fx:id="unirseAPartidaButton" onAction="#Partidas"  layoutX="173.0" layoutY="246.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="210.0" text="Unirse a Partida"  />
+      <Button fx:id="crearPartidaButton" layoutX="174.0" layoutY="153.0" mnemonicParsing="false" onAction="#CrearLobby" prefHeight="46.0" prefWidth="210.0" text="Crear Partida" />
+      <Button fx:id="unirseAPartidaButton" layoutX="173.0" layoutY="246.0" mnemonicParsing="false" onAction="#Partidas" prefHeight="46.0" prefWidth="210.0" text="Unirse a Partida" />
+      <Button  fx:id="vovlerAlMenuButton" layoutX="26.0" layoutY="29.0" mnemonicParsing="false" onAction="#volverAlMenu" text="Volver al menu" />
      
    </children>
 </AnchorPane>

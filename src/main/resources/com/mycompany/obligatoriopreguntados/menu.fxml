@@ -7,11 +7,22 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.obligatoriopreguntados.MenuController">
    <children>
-      <Button fx:id="PartidaUnJugadorButton" layoutX="174.0" layoutY="153.0" mnemonicParsing="false" onAction="#IniciarPartida" prefHeight="46.0" prefWidth="210.0" text="Un jugador" />
-      <Button fx:id="MultiJugadorButton" layoutX="173.0" layoutY="246.0" mnemonicParsing="false" onAction="#AMenuMultijugador" prefHeight="46.0" prefWidth="210.0" text="Multijugador" />
-      <Label fx:id="UsuarioLabel" layoutX="87.0" layoutY="67.0" prefHeight="46.0" prefWidth="378.0" text="Label">
+      <Button fx:id="PartidaUnJugadorButton" layoutX="195.0" layoutY="238.0" mnemonicParsing="false" onAction="#IniciarPartida" prefHeight="46.0" prefWidth="210.0" text="Un jugador">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="MultiJugadorButton" layoutX="195.0" layoutY="312.0" mnemonicParsing="false" onAction="#AMenuMultijugador" prefHeight="46.0" prefWidth="210.0" text="Multijugador">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Label fx:id="UsuarioLabel" layoutX="158.0" layoutY="149.0" prefHeight="50.0" prefWidth="310.0" text="Label" wrapText="true">
          <font>
             <Font name="System Bold" size="33.0" />
          </font></Label>
+      <Label layoutX="158.0" layoutY="27.0" text="TriviaGPT">
+         <font>
+            <Font name="System Bold" size="59.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

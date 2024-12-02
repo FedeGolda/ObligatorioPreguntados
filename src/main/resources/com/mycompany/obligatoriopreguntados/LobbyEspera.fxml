@@ -6,8 +6,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.obligatoriopreguntados.LobbyEsperaController">
    <children>
-      <Button fx:id="PartidaUnJugadorButton" layoutX="174.0" layoutY="153.0" mnemonicParsing="false" onAction="#IniciarPartida" prefHeight="46.0" prefWidth="210.0" text="ComenzarPartida"  />
+      <Button fx:id="PartidaUnJugadorButton" layoutX="186.0" layoutY="274.0" mnemonicParsing="false" onAction="#IniciarPartida" prefHeight="46.0" prefWidth="210.0" text="ComenzarPartida" />
    
-      <Label fx:id="UsuarioLabel" layoutX="243.0" layoutY="67.0" text="Esperando otro jugador..." />
+      <Label fx:id="UsuarioLabel" layoutX="224.0" layoutY="154.0" text="Esperando otro jugador..." />
+      <Button  fx:id="vovlerAlMenuButton" layoutX="26.0" layoutY="29.0" mnemonicParsing="false" onAction="#volverAlMenu" text="Volver al menu" />
    </children>
 </AnchorPane>

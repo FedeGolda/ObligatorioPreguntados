@@ -10,6 +10,7 @@ import Modelo.Partida;
 import Modelo.SesionActual;
 import Modelo.Usuario;
 import Servidor.ServidorRemoto;
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -54,5 +55,8 @@ public class PartidasController {
     
     }
     
-   
+           @FXML
+    public void volverAlMenu() throws IOException{
+    App.setRoot("menu");
+    }
 }

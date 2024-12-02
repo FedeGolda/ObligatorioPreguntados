@@ -51,6 +51,10 @@ public class MenuMultijugadorController implements Initializable{
     App.setRoot("Partidas");
     }
     
+    @FXML
+    public void volverAlMenu() throws IOException{
+    App.setRoot("menu");
+    }
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
